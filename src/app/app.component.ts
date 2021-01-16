@@ -13,10 +13,4 @@ export class AppComponent {
 
   constructor(private http: HttpClient, private accessApi: AccessService) {
   }
-
-  async b1click() {
-    this.accessApi.getMe().subscribe(me => {
-      console.log(me)
-    })
-  }
 }

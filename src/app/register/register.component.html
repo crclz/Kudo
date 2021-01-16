@@ -1,0 +1,16 @@
+<p>register works!</p>
+
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div>
+        <input formControlName="username">
+        <span>{{hinter.formField(form,'username')}}</span>
+    </div>
+
+    <div>
+        <input formControlName="password">
+        <span>{{hinter.formField(form,'password')}}</span>
+    </div>
+
+    <button type="submit">Submit</button>
+
+</form>

@@ -6,17 +6,21 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { ApiModule, BASE_PATH } from 'src/apilib';
+import { RegisterComponent } from './register/register.component';
+import { ReactiveFormsModule } from '@angular/forms'
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    ApiModule
+    ApiModule,
+    ReactiveFormsModule
   ],
   providers: [
     { provide: BASE_PATH, useValue: '' }
