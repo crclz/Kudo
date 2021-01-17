@@ -10,8 +10,8 @@
 
     <!-- Watch Icon -->
     <div style="background-color: powderblue;">
-        <button mat-icon-button>
-            <mat-icon class="unchecked">check_box</mat-icon>
+        <button mat-icon-button (click)="watchIconClick()">
+            <mat-icon [class.checked]="watched" [class.unchecked]="!watched">check_box</mat-icon>
         </button>
     </div>
 
