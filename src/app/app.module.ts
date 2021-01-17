@@ -12,6 +12,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input'
 import { MatButtonModule } from '@angular/material/button';
 import { MatSnackBarModule } from '@angular/material/snack-bar'
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
@@ -25,10 +26,12 @@ import { MatSnackBarModule } from '@angular/material/snack-bar'
     HttpClientModule,
     ApiModule,
     ReactiveFormsModule,
+    FlexLayoutModule,
+    
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
-    MatSnackBarModule
+    MatSnackBarModule,
   ],
   providers: [
     { provide: BASE_PATH, useValue: '' }
