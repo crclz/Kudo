@@ -16,7 +16,7 @@
     </div>
 
     <!-- Title -->
-    <div class="title" [title]="video.title">
+    <div *ngIf="!hideTitle" class="title" [title]="video.title">
         {{video.title}}
     </div>
 

@@ -12,6 +12,9 @@ export class VideoCellComponent implements OnInit {
   @Input('video')
   video: Video;
 
+  @Input('hide-title')
+  hideTitle = false;
+
   constructor(
     private viewService: VideoViewService,
   ) {

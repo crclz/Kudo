@@ -35,6 +35,8 @@ export class WatchProgressComponent implements OnInit {
   allVideos: Observable<Video[]>;
   showingVideos: Observable<Video[]>;
 
+  hideTitle = false;
+
   ngOnInit(): void {
 
   }

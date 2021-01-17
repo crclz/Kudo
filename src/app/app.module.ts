@@ -7,7 +7,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { ApiModule, BASE_PATH } from 'src/apilib';
 import { RegisterComponent } from './register/register.component';
-import { ReactiveFormsModule } from '@angular/forms'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input'
 import { MatButtonModule } from '@angular/material/button';
@@ -17,6 +17,7 @@ import { LoginComponent } from './login/login.component';
 import { WatchProgressComponent } from './watch-progress/watch-progress.component';
 import { VideoCellComponent } from './watch-progress/video-cell/video-cell.component';
 import { MatIconModule } from '@angular/material/icon'
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { MatIconModule } from '@angular/material/icon'
     HttpClientModule,
     ApiModule,
     ReactiveFormsModule,
+    FormsModule,
     FlexLayoutModule,
 
     MatFormFieldModule,
@@ -40,6 +42,7 @@ import { MatIconModule } from '@angular/material/icon'
     MatButtonModule,
     MatSnackBarModule,
     MatIconModule,
+    MatSlideToggleModule,
   ],
   providers: [
     { provide: BASE_PATH, useValue: '' }

@@ -1,4 +1,5 @@
 $uh: 2.5rem;
+$title-width: 10.1rem;
 
 .root {
     display: flex;
@@ -29,6 +30,7 @@ $uh: 2.5rem;
 }
 
 .title {
+    width: $title-width;
     line-height: $uh;
 
     flex-shrink: 1;
@@ -37,10 +39,10 @@ $uh: 2.5rem;
     overflow: hidden;
 }
 
-.unchecked{
+.unchecked {
     color: rgb(150, 199, 223);
 }
 
-.checked{
+.checked {
     color: deeppink;
 }
