@@ -36,9 +36,18 @@ export class WatchProgressComponent implements OnInit {
   showingVideos: Observable<Video[]>;
 
   hideTitle = false;
+  public detailVideo: Video = null;
 
   ngOnInit(): void {
 
+  }
+
+  videoClick(video: Video) {
+    if (this.detailVideo == video) {
+      this.detailVideo = null;
+    } else {
+      this.detailVideo = video;
+    }
   }
 
 }

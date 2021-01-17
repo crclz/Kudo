@@ -7,7 +7,9 @@
 <div style="display: flex; flex-wrap:wrap;">
     <ng-container *ngFor="let video of allVideos|async">
         <div style="margin: 0.4rem; ">
-            <app-video-cell [video]="video" [hide-title]="hideTitle"></app-video-cell>
+            <app-video-cell [video]="video" [hide-title]="hideTitle" [detail-mode]="video==detailVideo"
+                (number-click)="videoClick($event)">
+            </app-video-cell>
         </div>
 
     </ng-container>

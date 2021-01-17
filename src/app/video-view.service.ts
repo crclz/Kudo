@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, pipe, Subject } from 'rxjs';
 import { shareReplay, switchMap } from 'rxjs/operators';
-import { VideoView } from 'src/apilib';
+import { Video, VideoView } from 'src/apilib';
 import { ApiService } from './api.service';
 import { NotificationService } from './notification.service';
 

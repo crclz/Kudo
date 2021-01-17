@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
+import { EventEmitter } from '@angular/core';
 import { Video } from 'src/apilib';
 import { VideoViewService } from 'src/app/video-view.service';
 
@@ -14,6 +15,13 @@ export class VideoCellComponent implements OnInit {
 
   @Input('hide-title')
   hideTitle = false;
+
+  @Input('detail-mode')
+  detailMode = false;
+
+  @Output('number-click')
+  numberClickEvent = new EventEmitter<Video>();
+
 
   constructor(
     private viewService: VideoViewService,
@@ -41,6 +49,10 @@ export class VideoCellComponent implements OnInit {
     } else {
       this.setView();
     }
+  }
+
+  onNumberClick() {
+    this.numberClickEvent.emit(this.video);
   }
 
 }

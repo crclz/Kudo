@@ -1,5 +1,6 @@
 $uh: 2.5rem;
 $title-width: 9.6rem;
+$title-detail-width: 20rem;
 
 .root {
     display: flex;
@@ -42,10 +43,22 @@ $title-width: 9.6rem;
     padding-right: 0.4rem;
 }
 
+.title-detail {
+    width: $title-detail-width;
+}
+
 .unchecked {
     color: rgb(150, 199, 223);
 }
 
 .checked {
     color: deeppink;
+}
+
+.number {
+    margin-right: 0.35rem;
+}
+
+.number:hover {
+    cursor: pointer;
 }

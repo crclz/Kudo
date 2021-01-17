@@ -3,7 +3,7 @@
     <!-- Movie Or TV -->
     <div class="type-tag" [class.type-tv]="video.isTV" [class.type-movie]="!video.isTV">
         <ng-container *ngIf="video.isTV">
-            <div>{{video.seqId}}</div>
+            <div class="number" (click)="onNumberClick()">{{video.seqId}}</div>
         </ng-container>
         <ng-container *ngIf="!video.isTV">M</ng-container>
     </div>
@@ -16,7 +16,7 @@
     </div>
 
     <!-- Title -->
-    <div *ngIf="!hideTitle" class="title" [title]="video.title">
+    <div *ngIf="!hideTitle || detailMode" class="title" [title]="video.title" [class.title-detail]="detailMode">
         {{video.title}}
     </div>
 
