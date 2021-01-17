@@ -8,7 +8,14 @@
         <ng-container *ngIf="!video.isTV">M</ng-container>
     </div>
 
-    <!-- Title: TODO: use ... -->
+    <!-- Watch Icon -->
+    <div style="background-color: powderblue;">
+        <button mat-icon-button>
+            <mat-icon class="unchecked">check_box</mat-icon>
+        </button>
+    </div>
+
+    <!-- Title -->
     <div class="title" [title]="video.title">
         {{video.title}}
     </div>

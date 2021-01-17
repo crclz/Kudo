@@ -16,6 +16,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { LoginComponent } from './login/login.component';
 import { WatchProgressComponent } from './watch-progress/watch-progress.component';
 import { VideoCellComponent } from './watch-progress/video-cell/video-cell.component';
+import { MatIconModule } from '@angular/material/icon'
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { VideoCellComponent } from './watch-progress/video-cell/video-cell.compo
     MatInputModule,
     MatButtonModule,
     MatSnackBarModule,
+    MatIconModule,
   ],
   providers: [
     { provide: BASE_PATH, useValue: '' }
