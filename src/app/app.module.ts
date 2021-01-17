@@ -8,6 +8,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { ApiModule, BASE_PATH } from 'src/apilib';
 import { RegisterComponent } from './register/register.component';
 import { ReactiveFormsModule } from '@angular/forms'
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input'
+import { MatButtonModule } from '@angular/material/button';
+import { MatSnackBarModule } from '@angular/material/snack-bar'
 
 @NgModule({
   declarations: [
@@ -20,7 +24,11 @@ import { ReactiveFormsModule } from '@angular/forms'
     BrowserAnimationsModule,
     HttpClientModule,
     ApiModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    MatSnackBarModule
   ],
   providers: [
     { provide: BASE_PATH, useValue: '' }

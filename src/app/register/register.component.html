@@ -1,16 +1,21 @@
 <p>register works!</p>
 
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
+<form [formGroup]="form" (ngSubmit)="onSubmit(form.value)" autocomplete="off">
     <div>
-        <input formControlName="username">
-        <span>{{hinter.formField(form,'username')}}</span>
+        <mat-form-field>
+            <input placeholder="用户名" matInput formControlName="username">
+            <mat-error>{{hinter.formField(form,'username')}}</mat-error>
+        </mat-form-field>
     </div>
 
     <div>
-        <input formControlName="password">
-        <span>{{hinter.formField(form,'password')}}</span>
+        <mat-form-field>
+            <input placeholder="密码" matInput formControlName="password">
+            <mat-error>{{hinter.formField(form,'password')}}</mat-error>
+        </mat-form-field>
     </div>
-
-    <button type="submit">Submit</button>
+    <div>
+        <button mat-button mat-flat-button type="submit" color="primary" [disabled]="form.invalid">注册</button>
+    </div>
 
 </form>
