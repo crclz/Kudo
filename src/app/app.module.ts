@@ -14,12 +14,16 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatSnackBarModule } from '@angular/material/snack-bar'
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { LoginComponent } from './login/login.component';
+import { WatchProgressComponent } from './watch-progress/watch-progress.component';
+import { VideoCellComponent } from './watch-progress/video-cell/video-cell.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RegisterComponent,
-    LoginComponent
+    LoginComponent,
+    WatchProgressComponent,
+    VideoCellComponent
   ],
   imports: [
     BrowserModule,

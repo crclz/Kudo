@@ -1,0 +1,16 @@
+<div *ngIf="video" class="root">
+
+    <!-- Movie Or TV -->
+    <div class="type-tag" [class.type-tv]="video.isTV" [class.type-movie]="!video.isTV">
+        <ng-container *ngIf="video.isTV">
+            <div>{{video.seqId}}</div>
+        </ng-container>
+        <ng-container *ngIf="!video.isTV">M</ng-container>
+    </div>
+
+    <!-- Title: TODO: use ... -->
+    <div class="title" [title]="video.title">
+        {{video.title}}
+    </div>
+
+</div>

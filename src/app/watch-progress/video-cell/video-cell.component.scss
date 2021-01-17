@@ -1,0 +1,38 @@
+$uh: 2.5rem;
+
+.root {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    height: $uh;
+
+    // border-style: solid;
+    // border-width: 1px;
+}
+
+.type-tag {
+    width: 3rem;
+    font-size: 1.2rem;
+
+    line-height: $uh;
+    text-align: center;
+
+    flex-shrink: 0;
+}
+
+.type-tv {
+    background-color: lightblue;
+}
+
+.type-movie {
+    background-color: deeppink;
+}
+
+.title {
+    line-height: $uh;
+
+    flex-shrink: 1;
+    flex-grow: 1;
+    background-color: Gainsboro;
+    overflow: hidden;
+}

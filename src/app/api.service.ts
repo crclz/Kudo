@@ -9,5 +9,6 @@ export class ApiService {
   constructor(
     public users: UsersService,
     public access: AccessService,
+    public videos: VideosService,
   ) { }
 }

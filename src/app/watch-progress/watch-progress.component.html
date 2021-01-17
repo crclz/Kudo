@@ -1,0 +1,10 @@
+<h1>观看进度</h1>
+
+<div style="display: flex; flex-wrap:wrap;">
+    <ng-container *ngFor="let video of allVideos|async">
+        <div style="margin: 0.4rem; width: 13rem; ">
+            <app-video-cell [video]="video"></app-video-cell>
+        </div>
+
+    </ng-container>
+</div>
