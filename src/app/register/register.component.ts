@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CreateUserModel } from 'src/apilib';
 import { ApiService } from '../api.service';
 import { FieldErrorService } from '../field-error.service';
@@ -19,6 +20,7 @@ export class RegisterComponent implements OnInit {
     private fb: FormBuilder,
     public hinter: FieldErrorService,
     private noti: NotificationService,
+    private router: Router,
   ) {
     this.form = fb.group({
       username: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(16)]],
@@ -35,7 +37,7 @@ export class RegisterComponent implements OnInit {
 
     this.api.users.createUser(value).subscribe(res => {
       this.noti.ok("注册成功，即将跳转到登录页面");
-      // TODO: jump
+      this.router.navigate(['/login'])
     }, p => this.noti.err(p));
   }
 
