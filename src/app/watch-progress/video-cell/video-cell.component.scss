@@ -44,7 +44,7 @@ $title-detail-width: 20rem;
 }
 
 .title-detail {
-    width: $title-detail-width;
+    width: unset;
 }
 
 .unchecked {
@@ -61,4 +61,14 @@ $title-detail-width: 20rem;
 
 .number:hover {
     cursor: pointer;
+}
+
+.play-link {
+    margin-left: 2rem;
+    text-decoration: none;
+    color: navy;
+}
+
+.play-link:hover {
+    text-decoration: underline dashed forestgreen 3px;
 }

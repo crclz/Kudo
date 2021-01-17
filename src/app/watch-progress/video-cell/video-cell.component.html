@@ -5,7 +5,7 @@
         <ng-container *ngIf="video.isTV">
             <div class="number" (click)="onNumberClick()">{{video.seqId}}</div>
         </ng-container>
-        <ng-container *ngIf="!video.isTV">M</ng-container>
+        <div class="number" (click)="onNumberClick()" *ngIf="!video.isTV">M</div>
     </div>
 
     <!-- Watch Icon -->
@@ -18,6 +18,11 @@
     <!-- Title -->
     <div *ngIf="!hideTitle || detailMode" class="title" [title]="video.title" [class.title-detail]="detailMode">
         {{video.title}}
+
+        <span *ngIf="detailMode && !video.biliPlayId">播放地址：暂无</span>
+        <a *ngIf="detailMode && video.biliPlayId" class="play-link" target="_blank"
+            [href]="'https://www.bilibili.com/bangumi/play/'+video.biliPlayId">播放地址</a>
+
     </div>
 
 </div>
