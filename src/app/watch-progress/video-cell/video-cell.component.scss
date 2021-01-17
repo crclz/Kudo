@@ -1,5 +1,5 @@
 $uh: 2.5rem;
-$title-width: 10.1rem;
+$title-width: 9.6rem;
 
 .root {
     display: flex;
@@ -37,6 +37,9 @@ $title-width: 10.1rem;
     flex-grow: 1;
     background-color: Gainsboro;
     overflow: hidden;
+
+    padding-left: 0.4rem;
+    padding-right: 0.4rem;
 }
 
 .unchecked {
