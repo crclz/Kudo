@@ -1,1 +1,29 @@
 /* You can add global styles to this file, and also import other style files */
+
+.container {
+    margin: 0 auto 0;
+
+    @media (min-width: 0) {
+        width: 100%;
+    }
+
+    @media (min-width: 576px) {
+        width: 540px;
+    }
+
+    @media (min-width: 768px) {
+        width: 720px;
+    }
+
+    @media (min-width: 992px) {
+        width: 960px;
+    }
+
+    @media (min-width: 1200px) {
+        width: 1140px;
+    }
+
+    @media (min-width: 1400px) {
+        width: 1320px;
+    }
+}
