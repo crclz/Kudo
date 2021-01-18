@@ -11,13 +11,13 @@ configuration.ts
 encoder.ts
 git_push.sh
 index.ts
-model/createStorylineModel.ts
 model/createUserModel.ts
 model/idDto.ts
 model/loginModel.ts
 model/models.ts
 model/patchStorylineModel.ts
 model/patchVideoModel.ts
+model/putStorylineModel.ts
 model/putVideoModel.ts
 model/qUser.ts
 model/storyLine.ts

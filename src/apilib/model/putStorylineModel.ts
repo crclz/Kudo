@@ -11,7 +11,7 @@
  */
 
 
-export interface CreateStorylineModel { 
+export interface PutStorylineModel { 
     name: string;
     description: string;
     videos: Array<string>;
