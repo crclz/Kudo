@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, pipe, Subject } from 'rxjs';
+import { BehaviorSubject, Observable, pipe, ReplaySubject, Subject } from 'rxjs';
 import { shareReplay, switchMap } from 'rxjs/operators';
 import { Video, VideoView } from 'src/apilib';
 import { ApiService } from './api.service';
@@ -12,6 +12,8 @@ export class VideoViewService {
 
   private refresh$ = new Subject<any>();
   private viewRecords$: Observable<VideoView[]>;
+
+  public changed$ = new BehaviorSubject<any>(0);
 
   private viewSet = new Set<string>();
 
@@ -43,6 +45,7 @@ export class VideoViewService {
     this.api.videos.setView(videoId).subscribe(
       () => {
         this.viewSet.add(videoId);
+        this.changed$.next(0);
       },
       res => this.noti.err(res))
   }
@@ -53,6 +56,7 @@ export class VideoViewService {
         if (this.viewSet.has(videoId)) {
           this.viewSet.delete(videoId);
         }
+        this.changed$.next(0);
       },
       res => this.noti.err(res)
     )

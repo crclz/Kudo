@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { BehaviorSubject, combineLatest, Observable, ReplaySubject } from 'rxjs';
-import { filter, map, shareReplay, tap } from 'rxjs/operators';
+import { filter, map, shareReplay, switchMap, tap } from 'rxjs/operators';
 import { StoryLine, Video, VideoView } from 'src/apilib';
 import { ApiService } from '../api.service';
 import { FieldErrorService } from '../field-error.service';
@@ -59,6 +59,8 @@ export class WatchProgressComponent implements OnInit {
       shareReplay(1),
       tap(x => console.log(x.length, "Tapped", x))
     );
+
+    this.initRecentView();
   }
 
   allVideos: Observable<Video[]>;
@@ -74,6 +76,10 @@ export class WatchProgressComponent implements OnInit {
 
   orderByStory = false;
   orderByStory$ = new BehaviorSubject(this.orderByStory);
+
+  recentViewRecords$: Observable<VideoView[]>;
+  recentWatch$: Observable<{ view: VideoView, video: Video }[]>;
+
 
   ngOnInit(): void {
 
@@ -103,6 +109,21 @@ export class WatchProgressComponent implements OnInit {
 
   orderByStorySwitchChange() {
     this.orderByStory$.next(this.orderByStory);
+  }
+
+  initRecentView() {
+    this.recentViewRecords$ = this.viewService.changed$.pipe(
+      switchMap(() => this.api.users.getMyRecentVideoViews(6)),
+      shareReplay(1),
+    );
+
+    this.recentWatch$ = combineLatest([this.recentViewRecords$, this.allVideos])
+      .pipe(
+        map(([views, videos]) => {
+          var videoRef = new Map(videos.map(p => [p.id, p]));
+          return views.map<any>(p => ({ view: p, video: videoRef.get(p.videoId) }));
+        })
+      )
   }
 
 }

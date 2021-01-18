@@ -19,9 +19,16 @@
     <div *ngIf="!hideTitle || detailMode" class="title" [title]="video.title" [class.title-detail]="detailMode">
         {{video.title}}
 
-        <span *ngIf="detailMode && !video.biliPlayId">播放地址：暂无</span>
-        <a *ngIf="detailMode && video.biliPlayId" class="play-link" target="_blank"
-            [href]="'https://www.bilibili.com/bangumi/play/'+video.biliPlayId">播放地址</a>
+        <ng-container *ngIf="detailMode">
+            <span class="info-block">发行时间： {{video.publish*1000 | date:'YYYY-MM-dd'}}</span>
+
+            <span class="info-block" *ngIf="!video.biliPlayId">播放地址：暂无</span>
+            <a class="info-block" *ngIf="video.biliPlayId" class="play-link" target="_blank"
+                [href]="'https://www.bilibili.com/bangumi/play/'+video.biliPlayId">播放地址</a>
+        </ng-container>
+
+
+
 
     </div>
 
