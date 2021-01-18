@@ -3,9 +3,20 @@
 
 <mat-slide-toggle [(ngModel)]="hideTitle">隐藏标题</mat-slide-toggle>
 
+<mat-form-field>
+    <mat-select placeholder="选择故事线" [(ngModel)]="inputLine" (selectionChange)="inputLineChange()" required>
+        <mat-option [value]="0">
+            全集
+        </mat-option>
+        <mat-option *ngFor="let line of storylines$|async" [value]="line">
+            {{line.name}}: {{line.description}}
+        </mat-option>
+    </mat-select>
+</mat-form-field>
+
 
 <div style="display: flex; flex-wrap:wrap;">
-    <ng-container *ngFor="let video of allVideos|async">
+    <ng-container *ngFor="let video of showingVideos|async">
         <div style="margin: 0.4rem; ">
             <app-video-cell [video]="video" [hide-title]="hideTitle" [detail-mode]="video==detailVideo"
                 (number-click)="videoClick($event)">

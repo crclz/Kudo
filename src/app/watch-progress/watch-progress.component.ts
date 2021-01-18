@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { BehaviorSubject, combineLatest, Observable, ReplaySubject } from 'rxjs';
-import { filter, map, shareReplay } from 'rxjs/operators';
+import { filter, map, shareReplay, tap } from 'rxjs/operators';
 import { StoryLine, Video, VideoView } from 'src/apilib';
 import { ApiService } from '../api.service';
 import { FieldErrorService } from '../field-error.service';
@@ -43,7 +43,8 @@ export class WatchProgressComponent implements OnInit {
           return videos.filter(p => vset.has(p.id));
         }
       }),
-      shareReplay(1)
+      shareReplay(1),
+      tap(x => console.log(x.length, "Tapped"))
     );
   }
 
@@ -53,6 +54,8 @@ export class WatchProgressComponent implements OnInit {
   storylines$: Observable<StoryLine[]>;
   selectedStoryline$ = new BehaviorSubject<StoryLine>(null);
   selectedStorylineVideoIdSet$: Observable<Set<string>>;
+
+  inputLine: StoryLine | 0 = 0;
 
   hideTitle = false;
   public detailVideo: Video = null;
@@ -67,6 +70,14 @@ export class WatchProgressComponent implements OnInit {
     } else {
       this.detailVideo = video;
     }
+  }
+
+  inputLineChange() {
+    console.log(this.inputLine);
+
+    var l: StoryLine = this.inputLine == 0 ? null : this.inputLine;
+
+    this.selectedStoryline$.next(l);
   }
 
 }
