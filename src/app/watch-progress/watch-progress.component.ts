@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { shareReplay } from 'rxjs/operators';
-import { Video, VideoView } from 'src/apilib';
+import { BehaviorSubject, combineLatest, Observable, ReplaySubject } from 'rxjs';
+import { filter, map, shareReplay } from 'rxjs/operators';
+import { StoryLine, Video, VideoView } from 'src/apilib';
 import { ApiService } from '../api.service';
 import { FieldErrorService } from '../field-error.service';
 import { NotificationService } from '../notification.service';
@@ -28,12 +28,31 @@ export class WatchProgressComponent implements OnInit {
 
     this.allVideos = this.api.videos.getVideos().pipe(shareReplay(1));
 
-    this.showingVideos = this.allVideos;
+    this.storylines$ = this.api.storylines.getStoryLines();
 
+    this.selectedStorylineVideoIdSet$ = this.selectedStoryline$.pipe(
+      map(line => line == null ? null : new Set(line.videos)),
+      shareReplay(1)
+    );
+
+    this.showingVideos = combineLatest([this.allVideos, this.selectedStorylineVideoIdSet$]).pipe(
+      map(([videos, vset]) => {
+        if (vset == null) {
+          return videos;
+        } else {
+          return videos.filter(p => vset.has(p.id));
+        }
+      }),
+      shareReplay(1)
+    );
   }
 
   allVideos: Observable<Video[]>;
   showingVideos: Observable<Video[]>;
+
+  storylines$: Observable<StoryLine[]>;
+  selectedStoryline$ = new BehaviorSubject<StoryLine>(null);
+  selectedStorylineVideoIdSet$: Observable<Set<string>>;
 
   hideTitle = false;
   public detailVideo: Video = null;

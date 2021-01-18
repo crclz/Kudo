@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { AccessService, UsersService, VideosService } from 'src/apilib';
+import { AccessService, StoryLinesService, UsersService, VideosService } from 'src/apilib';
 
 @Injectable({
   providedIn: 'root'
@@ -10,5 +10,6 @@ export class ApiService {
     public users: UsersService,
     public access: AccessService,
     public videos: VideosService,
+    public storylines: StoryLinesService,
   ) { }
 }
