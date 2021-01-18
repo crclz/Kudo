@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Hash } from 'crypto';
 import { BehaviorSubject, combineLatest, Observable, ReplaySubject } from 'rxjs';
 import { filter, map, shareReplay, tap } from 'rxjs/operators';
 import { StoryLine, Video, VideoView } from 'src/apilib';
@@ -30,21 +31,34 @@ export class WatchProgressComponent implements OnInit {
 
     this.storylines$ = this.api.storylines.getStoryLines();
 
-    this.selectedStorylineVideoIdSet$ = this.selectedStoryline$.pipe(
-      map(line => line == null ? null : new Set(line.videos)),
-      shareReplay(1)
-    );
+    this.showingVideos = combineLatest([this.allVideos, this.selectedStoryline$, this.orderByStory$]).pipe(
+      map(([videos, line, shouldOrderByStory]) => {
+        var videosRef = new Map(videos.map(p => [p.id, p]));
 
-    this.showingVideos = combineLatest([this.allVideos, this.selectedStorylineVideoIdSet$]).pipe(
-      map(([videos, vset]) => {
-        if (vset == null) {
-          return videos;
+        var x: Video[] = [];
+
+        // filter
+        if (line == null) {
+          x = [...videos];
         } else {
-          return videos.filter(p => vset.has(p.id));
+
+          for (let vid of line.videos) {
+            if (!videosRef.has(vid)) {
+              throw "Key not found " + vid;
+            }
+            x.push(videosRef.get(vid));
+          }
         }
+
+        // order
+        if (!shouldOrderByStory) {
+          // order by pub
+          x = x.sort((a, b) => a.publish - b.publish);
+        }
+        return x;
       }),
       shareReplay(1),
-      tap(x => console.log(x.length, "Tapped"))
+      tap(x => console.log(x.length, "Tapped", x))
     );
   }
 
@@ -53,12 +67,14 @@ export class WatchProgressComponent implements OnInit {
 
   storylines$: Observable<StoryLine[]>;
   selectedStoryline$ = new BehaviorSubject<StoryLine>(null);
-  selectedStorylineVideoIdSet$: Observable<Set<string>>;
 
   inputLine: StoryLine | 0 = 0;
 
   hideTitle = false;
   public detailVideo: Video = null;
+
+  orderByStory = false;
+  orderByStory$ = new BehaviorSubject(this.orderByStory);
 
   ngOnInit(): void {
 
@@ -78,6 +94,16 @@ export class WatchProgressComponent implements OnInit {
     var l: StoryLine = this.inputLine == 0 ? null : this.inputLine;
 
     this.selectedStoryline$.next(l);
+    this.resetOrderByStory();
+  }
+
+  resetOrderByStory() {
+    this.orderByStory = false;
+    this.orderByStory$.next(this.orderByStory);
+  }
+
+  orderByStorySwitchChange() {
+    this.orderByStory$.next(this.orderByStory);
   }
 
 }

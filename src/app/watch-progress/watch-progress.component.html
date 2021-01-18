@@ -14,6 +14,10 @@
     </mat-select>
 </mat-form-field>
 
+<mat-slide-toggle [(ngModel)]="orderByStory" (change)="orderByStorySwitchChange()">
+    {{orderByStory?'故事序':'发行序'}}
+</mat-slide-toggle>
+
 
 <div style="display: flex; flex-wrap:wrap;">
     <ng-container *ngFor="let video of showingVideos|async">
