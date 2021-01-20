@@ -19,6 +19,7 @@ import { VideoCellComponent } from './watch-progress/video-cell/video-cell.compo
 import { MatIconModule } from '@angular/material/icon'
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSelectModule } from '@angular/material/select';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { MatSelectModule } from '@angular/material/select';
     MatIconModule,
     MatSlideToggleModule,
     MatSelectModule,
+    MatToolbarModule,
   ],
   providers: [
     { provide: BASE_PATH, useValue: '' }
