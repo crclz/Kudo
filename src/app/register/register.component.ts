@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CreateUserModel } from 'src/apilib';
 import { ApiService } from '../api.service';
@@ -21,6 +22,7 @@ export class RegisterComponent implements OnInit {
     public hinter: FieldErrorService,
     private noti: NotificationService,
     private router: Router,
+    private titleService: Title,
   ) {
     this.form = fb.group({
       username: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(16)]],
@@ -30,6 +32,7 @@ export class RegisterComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.titleService.setTitle('注册')
   }
 
   onSubmit(value: CreateUserModel) {

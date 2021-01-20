@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { LoginModel } from 'src/apilib';
 import { ApiService } from '../api.service';
@@ -21,6 +22,7 @@ export class LoginComponent implements OnInit {
     private noti: NotificationService,
     private router: Router,
     private auth: AuthService,
+    private titleService: Title,
   ) {
 
     this.form = this.fb.group({
@@ -33,6 +35,7 @@ export class LoginComponent implements OnInit {
   form: FormGroup;
 
   ngOnInit(): void {
+    this.titleService.setTitle('登录');
   }
 
   onSubmit(model: LoginModel) {

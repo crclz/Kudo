@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
+import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { BehaviorSubject, combineLatest, Observable, ReplaySubject } from 'rxjs';
 import { filter, map, shareReplay, switchMap, tap } from 'rxjs/operators';
@@ -24,6 +25,7 @@ export class WatchProgressComponent implements OnInit {
     private noti: NotificationService,
     private router: Router,
     public viewService: VideoViewService,
+    private titleService: Title,
   ) {
 
     this.allVideos = this.api.videos.getVideos().pipe(shareReplay(1));
@@ -82,7 +84,7 @@ export class WatchProgressComponent implements OnInit {
 
 
   ngOnInit(): void {
-
+    this.titleService.setTitle('控制台');
   }
 
   videoClick(video: Video) {
