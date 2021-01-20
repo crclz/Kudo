@@ -55,4 +55,17 @@ export class VideoCellComponent implements OnInit {
     this.numberClickEvent.emit(this.video);
   }
 
+  formatMovie(video: Video) {
+    if (video.isTV) {
+      throw "Should be tv";
+    }
+
+    if (video.seqId < 100) {
+      // M1 - M99
+      return 'M' + video.seqId;
+    } else {
+      return 'M';
+    }
+  }
+
 }

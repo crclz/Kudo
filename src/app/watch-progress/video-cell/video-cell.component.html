@@ -5,7 +5,7 @@
         <ng-container *ngIf="video.isTV">
             <div class="number" (click)="onNumberClick()">{{video.seqId}}</div>
         </ng-container>
-        <div class="number" (click)="onNumberClick()" *ngIf="!video.isTV">M</div>
+        <div class="number" (click)="onNumberClick()" *ngIf="!video.isTV">{{formatMovie(video)}}</div>
     </div>
 
     <!-- Watch Icon -->
