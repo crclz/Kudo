@@ -6,16 +6,17 @@
     <!-- middle expand -->
     <span class="example-spacer"></span>
 
-    <!-- if has logged in, show logout -->
-
+    <!-- if has logged in, show logout and user info -->
+    <ng-container *ngIf="(auth.me$ | async) as me">
+        <button mat-button (click)="logoutButtonOnClick()">登出</button>
+        <span>{{me.username}}</span>
+    </ng-container>
 
     <!-- if not logged in, show login and register -->
-    <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
-        <mat-icon>favorite</mat-icon>
-    </button>
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
-        <mat-icon>share</mat-icon>
-    </button>
+    <ng-container *ngIf="(auth.me$ | async) == null">
+        <a mat-button routerLink="/login">登录</a>
+        <a mat-button routerLink="/register">注册</a>
+    </ng-container>
 </mat-toolbar>
 
 

@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginModel } from 'src/apilib';
 import { ApiService } from '../api.service';
+import { AuthService } from '../auth.service';
 import { FieldErrorService } from '../field-error.service';
 import { NotificationService } from '../notification.service';
 
@@ -19,6 +20,7 @@ export class LoginComponent implements OnInit {
     public hinter: FieldErrorService,
     private noti: NotificationService,
     private router: Router,
+    private auth: AuthService,
   ) {
 
     this.form = this.fb.group({
@@ -36,7 +38,8 @@ export class LoginComponent implements OnInit {
   onSubmit(model: LoginModel) {
     this.api.access.login(model).subscribe(() => {
       this.noti.ok("登陆成功");
-      this.router.navigate(['/'])
+      this.auth.refresh();
+      this.router.navigate(['/']);
     }, p => this.noti.err(p));
   }
 
