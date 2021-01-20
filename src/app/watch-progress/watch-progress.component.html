@@ -3,6 +3,8 @@
 
 <mat-slide-toggle class="lrsep" [(ngModel)]="hideTitle">隐藏标题</mat-slide-toggle>
 
+<mat-slide-toggle class="lrsep" [(ngModel)]="hideWatched" (change)="hideWatchOnchange()">隐藏已看</mat-slide-toggle>
+
 
 <mat-form-field class="lrsep">
     <mat-select placeholder="选择故事线" [(ngModel)]="inputLine" (selectionChange)="inputLineChange()" required>

@@ -62,6 +62,16 @@ export class WatchProgressComponent implements OnInit {
       tap(x => console.log(x.length, "Tapped", x))
     );
 
+    this.showingVideos = combineLatest([this.showingVideos, this.hideWatched$]).pipe(
+      map(([videos, hideWatch]) => {
+        if (!hideWatch) {
+          return videos;
+        } else {
+          return videos.filter(p => !viewService.hasViewed(p.id));
+        }
+      })
+    )
+
     this.initRecentView();
   }
 
@@ -81,6 +91,9 @@ export class WatchProgressComponent implements OnInit {
 
   recentViewRecords$: Observable<VideoView[]>;
   recentWatch$: Observable<{ view: VideoView, video: Video }[]>;
+
+  hideWatched: boolean = false;
+  hideWatched$ = new BehaviorSubject<boolean>(this.hideWatched);
 
 
   ngOnInit(): void {
@@ -126,6 +139,10 @@ export class WatchProgressComponent implements OnInit {
           return views.map<any>(p => ({ view: p, video: videoRef.get(p.videoId) }));
         })
       )
+  }
+
+  hideWatchOnchange() {
+    this.hideWatched$.next(this.hideWatched);
   }
 
 }
