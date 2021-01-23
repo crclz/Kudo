@@ -1,0 +1,31 @@
+.mdbox {
+    margin-top: 20px;
+    padding-bottom: 30px;
+}
+
+::ng-deep .mdbox p {
+    font-size: 16px;
+}
+
+::ng-deep .mdbox h1 {
+    margin-top: 20px;
+    font-size: 36px;
+}
+
+::ng-deep .mdbox h2 {
+    margin-top: 50px;
+    font-size: 25px;
+}
+
+::ng-deep .mdbox h3 {
+    font-size: 20px;
+}
+
+::ng-deep .mdbox a {
+    text-decoration: underline;
+    color: #900b09;
+}
+
+::ng-deep .mdbox a:hover {
+    color: red;
+}

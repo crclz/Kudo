@@ -35,7 +35,7 @@ export class ArticleComponent implements OnInit {
             return of(null);
           }))
       }),
-      tap(p => console.log(p)),
+      // tap(p => console.log(p)),
       shareReplay(1),
     );
 
