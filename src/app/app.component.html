@@ -3,6 +3,10 @@
     <!-- wesite name -->
     <span>Conan Dashboard</span>
 
+    <ng-container *ngIf="(auth.me$ | async) as me">
+        <a mat-button routerLink="/progress">观看进度</a>
+    </ng-container>
+
     <!-- middle expand -->
     <span class="example-spacer"></span>
 
