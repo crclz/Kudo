@@ -6,6 +6,7 @@ import { BehaviorSubject, combineLatest, Observable, ReplaySubject } from 'rxjs'
 import { filter, map, shareReplay, switchMap, tap } from 'rxjs/operators';
 import { StoryLine, Video, VideoView } from 'src/apilib';
 import { ApiService } from '../api.service';
+import { AuthService } from '../auth.service';
 import { FieldErrorService } from '../field-error.service';
 import { NotificationService } from '../notification.service';
 import { VideoViewService } from '../video-view.service';
@@ -26,6 +27,7 @@ export class WatchProgressComponent implements OnInit {
     private router: Router,
     public viewService: VideoViewService,
     private titleService: Title,
+    public auth: AuthService,
   ) {
 
     this.allVideos = this.api.videos.getVideos().pipe(shareReplay(1));

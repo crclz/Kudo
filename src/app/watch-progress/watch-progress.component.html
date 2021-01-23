@@ -1,49 +1,56 @@
-<h1>观看进度</h1>
+<ng-container *ngIf="(auth.me$ | async) == null">
+    <h1>请登录</h1>
+</ng-container>
+
+<ng-container *ngIf="(auth.me$ | async) as me">
+
+    <h1>观看进度</h1>
 
 
-<mat-slide-toggle class="lrsep" [(ngModel)]="hideTitle">隐藏标题</mat-slide-toggle>
+    <mat-slide-toggle class="lrsep" [(ngModel)]="hideTitle">隐藏标题</mat-slide-toggle>
 
-<mat-slide-toggle class="lrsep" [(ngModel)]="hideWatched" (change)="hideWatchOnchange()">隐藏已看</mat-slide-toggle>
-
-
-<mat-form-field class="lrsep">
-    <mat-select placeholder="选择故事线" [(ngModel)]="inputLine" (selectionChange)="inputLineChange()" required>
-        <mat-option [value]="0">
-            全集
-        </mat-option>
-        <mat-option *ngFor="let line of storylines$|async" [value]="line">
-            {{line.name}}: {{line.description}}
-        </mat-option>
-    </mat-select>
-</mat-form-field>
+    <mat-slide-toggle class="lrsep" [(ngModel)]="hideWatched" (change)="hideWatchOnchange()">隐藏已看</mat-slide-toggle>
 
 
-<mat-slide-toggle class="lrsep" [(ngModel)]="orderByStory" (change)="orderByStorySwitchChange()">
-    {{orderByStory?'故事序':'发行序'}}
-</mat-slide-toggle>
+    <mat-form-field class="lrsep">
+        <mat-select placeholder="选择故事线" [(ngModel)]="inputLine" (selectionChange)="inputLineChange()" required>
+            <mat-option [value]="0">
+                全集
+            </mat-option>
+            <mat-option *ngFor="let line of storylines$|async" [value]="line">
+                {{line.name}}: {{line.description}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
 
-<!-- 最近观看 -->
-<div id="recently-view">
-    最近观看
-    <div *ngFor="let x of recentWatch$|async" class="recent-item">
 
-        <div class="num-item">
-            <ng-container *ngIf="x.video.isTV">TV {{x.video.seqId}} </ng-container>
-            <ng-container *ngIf="!x.video.isTV">M </ng-container>
+    <mat-slide-toggle class="lrsep" [(ngModel)]="orderByStory" (change)="orderByStorySwitchChange()">
+        {{orderByStory?'故事序':'发行序'}}
+    </mat-slide-toggle>
+
+    <!-- 最近观看 -->
+    <div id="recently-view">
+        最近观看
+        <div *ngFor="let x of recentWatch$|async" class="recent-item">
+
+            <div class="num-item">
+                <ng-container *ngIf="x.video.isTV">TV {{x.video.seqId}} </ng-container>
+                <ng-container *ngIf="!x.video.isTV">M </ng-container>
+            </div>
+
+            <ng-container> {{x.video.title}} </ng-container>
+            <span class="time-item"> 时间: {{x.view.createdAt | date:"YYYY-MM-dd HH:mm"}} </span>
         </div>
-
-        <ng-container> {{x.video.title}} </ng-container>
-        <span class="time-item"> 时间: {{x.view.createdAt | date:"YYYY-MM-dd HH:mm"}} </span>
     </div>
-</div>
 
-<div style="display: flex; flex-wrap:wrap;">
-    <ng-container *ngFor="let video of showingVideos|async">
-        <div style="margin: 0.4rem; ">
-            <app-video-cell [video]="video" [hide-title]="hideTitle" [detail-mode]="video==detailVideo"
-                (number-click)="videoClick($event)">
-            </app-video-cell>
-        </div>
+    <div style="display: flex; flex-wrap:wrap;">
+        <ng-container *ngFor="let video of showingVideos|async">
+            <div style="margin: 0.4rem; ">
+                <app-video-cell [video]="video" [hide-title]="hideTitle" [detail-mode]="video==detailVideo"
+                    (number-click)="videoClick($event)">
+                </app-video-cell>
+            </div>
 
-    </ng-container>
-</div>
+        </ng-container>
+    </div>
+</ng-container>
