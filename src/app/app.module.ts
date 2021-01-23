@@ -21,6 +21,8 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSelectModule } from '@angular/material/select';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { HomePageComponent } from './home-page/home-page.component';
+import { MarkdownModule } from 'ngx-markdown';
+import { ArticleComponent } from './article/article.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,8 @@ import { HomePageComponent } from './home-page/home-page.component';
     LoginComponent,
     WatchProgressComponent,
     VideoCellComponent,
-    HomePageComponent
+    HomePageComponent,
+    ArticleComponent
   ],
   imports: [
     BrowserModule,
@@ -49,6 +52,7 @@ import { HomePageComponent } from './home-page/home-page.component';
     MatSlideToggleModule,
     MatSelectModule,
     MatToolbarModule,
+    MarkdownModule.forRoot(),
   ],
   providers: [
     { provide: BASE_PATH, useValue: '' }

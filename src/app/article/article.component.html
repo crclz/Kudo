@@ -1,0 +1,13 @@
+<div class="container mdbox">
+
+    <div *ngIf="(content$|async) as content">
+
+        <markdown [data]="content" ngPreserveWhitespaces>
+        </markdown>
+
+    </div>
+</div>
+
+<h1 *ngIf="(content$|async) == null">
+    文章未找到
+</h1>
