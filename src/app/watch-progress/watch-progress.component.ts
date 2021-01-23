@@ -55,8 +55,13 @@ export class WatchProgressComponent implements OnInit {
 
         // order
         if (!shouldOrderByStory) {
-          // order by pub
-          x = x.sort((a, b) => a.publish - b.publish);
+          // order by pub then by seqId
+          x = x.sort((a, b) => {
+            if (a.publish - b.publish != 0) {
+              return a.publish - b.publish;
+            }
+            return a.seqId - b.seqId;
+          });
         }
         return x;
       }),
