@@ -68,4 +68,13 @@ export class VideoCellComponent implements OnInit {
     }
   }
 
+  formatTvSeq(x: number) {
+    var s = x.toString();
+    var zeroCounts = 3 - s.length;
+    for (var i = 0; i < zeroCounts; i++) {
+      s = '0' + s;
+    }
+    return s;
+  }
+
 }

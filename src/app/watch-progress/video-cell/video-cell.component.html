@@ -3,7 +3,7 @@
     <!-- Movie Or TV -->
     <div class="type-tag" [class.type-tv]="video.isTV" [class.type-movie]="!video.isTV">
         <ng-container *ngIf="video.isTV">
-            <div class="number" (click)="onNumberClick()">{{video.seqId}}</div>
+            <div class="number" (click)="onNumberClick()">{{formatTvSeq(video.seqId)}}</div>
         </ng-container>
         <div class="number" (click)="onNumberClick()" *ngIf="!video.isTV">{{formatMovie(video)}}</div>
     </div>
