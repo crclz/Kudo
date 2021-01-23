@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
     this.api.access.login(model).subscribe(() => {
       this.noti.ok("登陆成功");
       this.auth.refresh();
-      this.router.navigate(['/progress']);
+      this.router.navigate(['/']);
     }, p => this.noti.err(p));
   }
 

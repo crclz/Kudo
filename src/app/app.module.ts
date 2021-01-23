@@ -20,6 +20,7 @@ import { MatIconModule } from '@angular/material/icon'
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatSelectModule } from '@angular/material/select';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { HomePageComponent } from './home-page/home-page.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     RegisterComponent,
     LoginComponent,
     WatchProgressComponent,
-    VideoCellComponent
+    VideoCellComponent,
+    HomePageComponent
   ],
   imports: [
     BrowserModule,

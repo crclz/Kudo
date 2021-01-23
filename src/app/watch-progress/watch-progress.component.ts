@@ -59,7 +59,7 @@ export class WatchProgressComponent implements OnInit {
         return x;
       }),
       shareReplay(1),
-      tap(x => console.log(x.length, "Tapped", x))
+      tap(x => console.log(x.length, "Tapped"))
     );
 
     this.showingVideos = combineLatest([this.showingVideos, this.hideWatched$]).pipe(

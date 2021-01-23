@@ -29,6 +29,6 @@ export class AppComponent {
     this.auth.refresh();
 
     // jump to main page
-    this.router.navigate(['/login']);
+    this.router.navigate(['/']);
   }
 }
