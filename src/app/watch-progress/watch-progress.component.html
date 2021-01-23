@@ -18,10 +18,14 @@
                 全集
             </mat-option>
             <mat-option *ngFor="let line of storylines$|async" [value]="line">
-                {{line.name}}: {{line.description}}
+                {{line.name}}
             </mat-option>
         </mat-select>
     </mat-form-field>
+
+    <span *ngIf="(selectedStoryline$ | async) as line" class="line-description">
+        {{line.name}}: {{line.description}}
+    </span>
 
 
     <mat-slide-toggle class="lrsep" [(ngModel)]="orderByStory" (change)="orderByStorySwitchChange()">
