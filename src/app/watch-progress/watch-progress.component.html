@@ -11,6 +11,7 @@
 
     <mat-slide-toggle class="lrsep" [(ngModel)]="hideWatched" (change)="hideWatchOnchange()">隐藏已看</mat-slide-toggle>
 
+    <a mat-raised-button color="primary" target="_blank" [routerLink]="['/articles/storylines']">故事线简介</a>
 
     <mat-form-field class="lrsep">
         <mat-select placeholder="选择故事线" [(ngModel)]="inputLine" (selectionChange)="inputLineChange()" required>
